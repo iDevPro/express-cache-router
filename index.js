@@ -10,7 +10,7 @@ function CacheMiddleware(options) {
         var end = res.end;
         res.end = function(buffer) {
             if(req.method === 'GET' && (typeof buffer === 'string' || Buffer.isBuffer(buffer)) ) {
-                content = buffer;
+                content = buffer.toString('utf8');
                 setTimeout(function() {
                     content = null;
                 }, expire);
