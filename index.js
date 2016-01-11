@@ -9,6 +9,11 @@ function CacheMiddleware(options) {
         if(content && id == req.params.id) { 
             res.charset = 'utf-8';
             res.contentType('application/json; charset=UTF-8');
+            var origin = (req.headers.origin || "*");
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            res.header('Access-Control-Allow-Credentials', true);
+            res.header('Access-Control-Allow-Origin', origin);
+            
             return res.end(content);
         }
         var end = res.end;
@@ -27,3 +32,9 @@ function CacheMiddleware(options) {
 }
 
 module.exports = CacheMiddleware;
+
+
+
+<th class="glyphicon glyphicon-plane">A</th>
+<th class="glyphicon glyphicon-dashboard">B</th>
+<th class="glyphicon glyphicon-certificate">C</th>
